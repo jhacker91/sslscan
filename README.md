@@ -1,18 +1,13 @@
 # sslscan
-
-# Script: Giuseppe Compare\n
-# sito web: https://jhackers.it
-# pagina youtube: https://www.youtube.com/channel/UCre9ioOuozO7pwJdUN0vvNA
-# gruppo telegram: https://t.me/joinchat/H9mGjhSHp-jVV5QPnvtqeg
-
-# Giuseppe Compare 
-
+Script: Giuseppe Compare
+sito web: https://jhackers.it
+pagina youtube: https://www.youtube.com/channel/UCre9ioOuozO7pwJdUN0vvNA
+gruppo telegram: https://t.me/joinchat/H9mGjhSHp-jVV5QPnvtqeg
 
 Script Python creato da Giuseppe Compare - @jhacker91
-
 Il file in formato go è disponibile su gitHub - https://github.com/ssllabs/ssllabs-scan/
 
-Installazione:
+# Installazione:
 
 snap install go --classic
 
@@ -22,7 +17,7 @@ sudo pip3 install openpyxl
 
 sudo pip3 install xlrd
 
-Avvio :
+# Avvio :
 
 go run ssllabs-scan-v3.go [option] hostname
 
