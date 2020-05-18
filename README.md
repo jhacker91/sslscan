@@ -13,6 +13,8 @@ Il file in formato go è disponibile su gitHub - https://github.com/ssllabs/ssll
 
 Installazione:
 
+snap install go --classic
+
 sudo pip3 install xlsxwriter
 
 sudo pip3 install openpyxl
