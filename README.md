@@ -7,6 +7,7 @@
 
 # Giuseppe Compare 
 
+
 Script Python creato da Giuseppe Compare - @jhacker91
 
 Il file in formato go è disponibile su gitHub - https://github.com/ssllabs/ssllabs-scan/
