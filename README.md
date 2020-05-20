@@ -17,8 +17,6 @@ sudo pip3 install requests
 
 sudo pip3 install datetime
 
-sudo pip3 install time
-
 sudo pip3 install xlsxwriter
 
 sudo pip3 install openpyxl
