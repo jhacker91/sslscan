@@ -1,24 +1,28 @@
-# sslscan / sslscan-multithread
+# SSLSCAN
 
-Script: Giuseppe Compare
+Sslscan allow you to perform a certificates analysis on a target domain. There are 2 way to use the software :
 
-sito web: https://jhackers.it
+1) sslscan 
+2) sslscan-multithreading
 
-pagina youtube: https://www.youtube.com/channel/UCre9ioOuozO7pwJdUN0vvNA
+The second allow you to execute a scan on a large number of hosts faster than first because use multithreading. 
 
-gruppo telegram: https://t.me/joinchat/H9mGjhSHp-jVV5QPnvtqeg
+The software generate 2 file :
 
-Script Python creato da Giuseppe Compare - @jhacker91
+1) json
+2) excel 
 
-# PREREQUISITI
+In the Excel file you can find all info about certificates ( like grade, expiry and weak keys ).
 
-Python 3
 
-PHP
+## Prerequisites
 
-sudo
+Python3
 
-# INSTALLAZIONE:
+Sudo
+
+
+## Installation
 
 sudo pip3 install requests
 
@@ -30,15 +34,20 @@ sudo pip3 install openpyxl
 
 sudo pip3 install xlrd
 
-# AVVIO :
+
+## Usage
 
 python3 sslscan.py
+
+or
 
 python3 sslscan-multithread.py
 
 
-C'è la possibilità di scansionare un host oppure una lista di host ( in un file txt ). La procedura è completamente guidata.
-Alla fine verranno prodotti 2 file: un file json (consultabile da Firefox) ed un file excel per l'analisi dei certificati ottenuti.
+You can decide to generate excel from json or perform a scan ( 1 host or a list of host saved in txt file ).
 
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-# NB : EVITARE DI SOVRACCARICARE IL SERVER CON UN NUMERO TROPPO ALTO DI RICHIESTE ( IN VERSIONE MULTITHREAD )
+## License
+[MIT](https://github.com/jhacker91/sslscan/blob/master/License.txt)
