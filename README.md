@@ -40,5 +40,5 @@ python3 sslscan-multithread.py
 C'è la possibilità di scansionare un host oppure una lista di host ( in un file txt ). La procedura è completamente guidata.
 Alla fine verranno prodotti 2 file: un file json (consultabile da Firefox) ed un file excel per l'analisi dei certificati ottenuti.
 
-# NB: Ogni scansione impiega circa 190 secondi ( Quindi bisogna attenderne il completamento per vedere i risultati ). La lista di host prevede quindi tempi più lunghi.
 
+# NB : EVITARE DI SOVRACCARICARE IL SERVER CON UN NUMERO TROPPO ALTO DI RICHIESTE ( IN VERSIONE MULTITHREAD )
