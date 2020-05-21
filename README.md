@@ -32,7 +32,7 @@ sudo pip3 install xlrd
 
 # AVVIO :
 
-python3 analisi_certificati.py
+python3 sslscan.py
 
 python3 sslscan-multithread.py
 
