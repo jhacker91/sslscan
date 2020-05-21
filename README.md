@@ -36,19 +36,6 @@ python3 sslscan.py
 
 python3 sslscan-multithread.py
 
-# INSTALLAZIONE MULTITHREAD
-
-sudo pip3 install requests
-
-sudo pip3 install datetime
-
-sudo pip3 install xlsxwriter
-
-sudo pip3 install openpyxl
-
-sudo pip3 install xlrd
-
-
 
 C'è la possibilità di scansionare un host oppure una lista di host ( in un file txt ). La procedura è completamente guidata.
 Alla fine verranno prodotti 2 file: un file json (consultabile da Firefox) ed un file excel per l'analisi dei certificati ottenuti.
