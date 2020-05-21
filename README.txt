@@ -32,7 +32,7 @@ sudo pip3 install xlrd
 
 # AVVIO :
 
-python3 analisi_certificati.py
+python3 sslscan.py
 
 C'è la possibilità di scansionare un host oppure una lista di host ( in un file txt ). La procedura è completamente guidata.
 Alla fine verranno prodotti 2 file: un file json (consultabile da Firefox) ed un file excel per l'analisi dei certificati ottenuti.
