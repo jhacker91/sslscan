@@ -1,4 +1,4 @@
-# sslscan / sslscan-multithread
+# sslscan
 
 Script: Giuseppe Compare
 
