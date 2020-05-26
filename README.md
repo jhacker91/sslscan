@@ -46,3 +46,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 [MIT](https://github.com/jhacker91/sslscan/blob/master/License.txt)
+
+## NB
+Use only to scan your Server. Scanning other servers whitout authorization is a crime.
