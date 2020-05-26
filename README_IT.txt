@@ -14,8 +14,6 @@ Script Python creato da Giuseppe Compare - @jhacker91
 
 Python 3
 
-PHP
-
 sudo
 
 # INSTALLAZIONE:
@@ -34,12 +32,10 @@ sudo pip3 install xlrd
 
 python3 sslscan.py
 
-python3 sslscan-multithread.py
-
 
 C'è la possibilità di scansionare un host oppure una lista di host ( in un file txt ). La procedura è completamente guidata.
 Alla fine verranno prodotti 2 file: un file json (consultabile da Firefox) ed un file excel per l'analisi dei certificati ottenuti.
 
+# NB : Inserire un numero troppo elevato di thread può rallentare l'analisi
 
-# NB : EVITARE DI SOVRACCARICARE IL SERVER CON UN NUMERO TROPPO ALTO DI RICHIESTE ( IN VERSIONE MULTITHREAD )
-
+# Usare solo per testare il proprio server. Scansionare servizi di cui non si ha l'autorizzazione è reato.
