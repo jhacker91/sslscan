@@ -2,7 +2,7 @@
 
 Sslscan allow you to perform a certificates analysis on a target domain. There are 2 way to use the software :
 
-1) sslscan 
+1) sslscan (1 thread)
 2) sslscan-multithreading
 
 The second allow you to execute a scan on a large number of hosts faster than first because use multithreading. 
@@ -38,11 +38,6 @@ sudo pip3 install xlrd
 ## Usage
 
 python3 sslscan.py
-
-or
-
-python3 sslscan-multithread.py
-
 
 You can decide to generate excel from json or perform a scan ( 1 host or a list of host saved in txt file ).
 
