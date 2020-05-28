@@ -54,8 +54,8 @@ class IlMioThread(threading.Thread):
                     time_to_fail=time_to_fail+1
                     if time_to_fail > 20:
                         break
-            elif 'errors' in response.json():
-                break
+                else:
+                    break
 
         if 'errors' not in response.json():
             while response.json()['status'] != 'READY':
