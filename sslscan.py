@@ -1,4 +1,4 @@
-import json
+aimport json
 from datetime import datetime
 from queue import Queue
 import xlsxwriter
@@ -52,13 +52,10 @@ class ThreadScanner(threading.Thread):
                     print("\nCapacità di scansione elevata. La scansione dell'host " + self.linea + " verra' riprovata in seguito")
                     print("\nIl processo potrebbe rallentare")
                     ran= random.randint(1,40)
-                    time_to_sleep=150+ran
+                    time_to_sleep=130+ran
                     time.sleep(time_to_sleep)
                     time_to_fail=time_to_fail+1
                     if time_to_fail > 6:
-                        time_to_sleep = 220+ran
-                        time.sleep(time_to_sleep)
-                    elif time_to_fail > 10:    
                         break
                 else:
                     break
