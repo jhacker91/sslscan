@@ -39,7 +39,7 @@ sudo pip3 install xlrd
 
 python3 sslscan.py
 
-You can decide to generate excel from json or perform a scan ( 1 host or a list of host saved in txt file ).
+You can decide to generate excel from json or perform a scan ( 1 host or a list of host saved in txt file ). The .txt file must be in the same directory of sslscan.py.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
