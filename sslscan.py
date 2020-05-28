@@ -6,6 +6,7 @@ from pip._vendor.distlib.compat import raw_input
 import requests
 import threading
 import time
+import random
 
 print("##########################")
 print("##########################")
@@ -50,9 +51,14 @@ class ThreadScanner(threading.Thread):
                 if response.json()['errors'][0]['message']== 'Running at full capacity. Please try again later.':
                     print("\nCapacità di scansione elevata. La scansione dell'host " + self.linea + " verra' riprovata in seguito")
                     print("\nIl processo potrebbe rallentare")
-                    time.sleep(120)
+                    ran= random.randint(1,40)
+                    time_to_sleep=180+ran
+                    time.sleep(time_to_sleep)
                     time_to_fail=time_to_fail+1
-                    if time_to_fail > 20:
+                    if time_to_fail > 6:
+                        time_to_sleep = 600
+                        time.sleep(time_to_sleep)
+                    elif time_to_fail > 12:    
                         break
                 else:
                     break
