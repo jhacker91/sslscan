@@ -25,7 +25,7 @@ global lista_det
 lista_err=[]
 lista_det=[]
 
-class IlMioThread(threading.Thread):
+class ThreadScanner(threading.Thread):
     def __init__(self, nome, linea):
         threading.Thread.__init__(self)
         self.nome = nome
@@ -158,7 +158,7 @@ while scelta == 0:
                         linea = q.get()
                         cont = cont + 1
                         x_t = x_t + 1
-                        thread1 = IlMioThread("Thread#1", linea)
+                        thread1 = ThreadScanner("Thread#1", linea)
                         lista_thread.append(thread1)
                         thread1.start()
 
