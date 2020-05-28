@@ -58,7 +58,7 @@ class ThreadScanner(threading.Thread):
                     if time_to_fail > 6:
                         time_to_sleep = 220+ran
                         time.sleep(time_to_sleep)
-                    elif time_to_fail > 12:    
+                    elif time_to_fail > 10:    
                         break
                 else:
                     break
