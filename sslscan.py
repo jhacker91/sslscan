@@ -52,7 +52,7 @@ class ThreadScanner(threading.Thread):
                     print("\nCapacità di scansione elevata. La scansione dell'host " + self.linea + " verra' riprovata in seguito")
                     print("\nIl processo potrebbe rallentare")
                     ran= random.randint(1,40)
-                    time_to_sleep=180+ran
+                    time_to_sleep=150+ran
                     time.sleep(time_to_sleep)
                     time_to_fail=time_to_fail+1
                     if time_to_fail > 6:
