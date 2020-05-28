@@ -157,7 +157,7 @@ while scelta == 0:
 
                 while x_t < len(righe_file):
                     if cont < n_thre:
-                        time.sleep(3)
+                        time.sleep(6)
                         linea = q.get()
                         cont = cont + 1
                         x_t = x_t + 1
