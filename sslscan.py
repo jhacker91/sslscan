@@ -42,7 +42,6 @@ class ThreadScanner(threading.Thread):
     def run(self):
         global n_thre
 
-        print(n_thre)
         params = (
             ('host', linea),
             ('all', 'done'),
