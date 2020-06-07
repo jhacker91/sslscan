@@ -33,39 +33,43 @@ n_e = 2
 m_e = 0
 
 class ThreadScanner(threading.Thread):
+    global data
+
     def __init__(self, nome, linea):
         threading.Thread.__init__(self)
         self.nome = nome
         self.linea = linea
-        self.o = o
 
     def run(self):
         global n_thre
+        global lista_err
+        global lista_det
 
         params = (
-            ('host', linea),
+            ('host', self.linea),
             ('all', 'done'),
         )
         response = requests.get('https://api.ssllabs.com/api/v3/analyze', params=params)
         print("\nAnalisi in corso di : " + self.linea)
         time.sleep(15)
-        time_to_fail=0
+        time_to_fail = 0
 
         while True:
             if 'errors' not in response.json():
                 break
             elif 'errors' in response.json():
-                if response.json()['errors'][0]['message']== 'Running at full capacity. Please try again later.':
-                    print("\nCapacità di scansione elevata. La scansione dell'host " + self.linea + " verra' riprovata in seguito")
+                if response.json()['errors'][0]['message'] == 'Running at full capacity. Please try again later.':
+                    print(
+                        "\nCapacità di scansione elevata. La scansione dell'host " + self.linea + " verra' riprovata in seguito")
                     print("\nIl processo potrebbe rallentare")
                     if time_to_fail > 30:
                         break
                     if n_thre < 5:
-                        time_to_fail =time_to_fail+1
-                        ran=random.randint(1,40)
-                        time_to_sleep=60+ran
+                        time_to_fail = time_to_fail + 1
+                        ran = random.randint(1, 40)
+                        time_to_sleep = 60 + ran
                         time.sleep(time_to_sleep)
-                        time_to_fail=time_to_fail+1
+                        time_to_fail = time_to_fail + 1
                         response = requests.get('https://api.ssllabs.com/api/v3/analyze', params=params)
 
                     else:
@@ -82,6 +86,8 @@ class ThreadScanner(threading.Thread):
             while response.json()['status'] != 'READY':
                 if response.json()['status'] == "ERROR":
                     print("\nL'host " + self.linea + " non e' stato scansionato ")
+                    lista_det.append(response.json()['statusMessage'])
+                    lista_err.append(self.linea)
                     break
                 else:
                     time.sleep(20)
@@ -96,11 +102,10 @@ class ThreadScanner(threading.Thread):
             lista_det.append(response.json()['errors'][0]['message'])
             lista_err.append(self.linea)
 
-
-
         print("\nAnalisi di " + self.linea + " terminata !!")
+
         global cont
-        cont = cont -1
+        cont = cont - 1
         print("response : " + str(response.json()))
         data.append(response.json())
 
@@ -109,9 +114,13 @@ class ThreadScanner(threading.Thread):
 scelta = 0
 
 while scelta == 0:
+
     valore_iniziale = input(
-        "\nVuoi effettuare una scansione o hai già un file json da analizzare? (1 -Scansione) (2 - file json)? : ")
-    output = raw_input("\nInserisci il nome del file excel da creare (senza specificare l'estensione) : ")
+        "\nVuoi effettuare una scansione o hai già un file json da analizzare? (1 -Scansione) (2 - Analisi file json)? : ")
+    output = raw_input("\nInserisci il nome del file excel da creare: ")
+    if len(output) > 40:
+        valore_iniziale = 3
+
     if valore_iniziale == '1':
         scelta = 1
         # SCANSIONE CERTIFICATI
@@ -122,7 +131,16 @@ while scelta == 0:
             if scanner == '1':
                 data = []
                 host_singolo = input("\nInserisci l'host da scansionare : ")
-                file_da_analizzare = input("\nInserisci il nome del file json da creare (.json) : ")
+                file_da_analizzare = input("\nInserisci il nome del file json da creare: ")
+                if "." in file_da_analizzare:
+                    test = file_da_analizzare.split(".")
+                    if test[1] != "json":
+                        file_da_analizzare = file_da_analizzare + '.json'
+                    else:
+                        file_da_analizzare = file_da_analizzare
+                else:
+                    file_da_analizzare = file_da_analizzare + '.json'
+
                 o = open(file_da_analizzare, "a")
                 params = (
                     ('host', host_singolo),
@@ -159,7 +177,16 @@ while scelta == 0:
                 data = []
                 f = open(nome_doc, "r")
                 righe_file = f.readlines()
-                file_da_analizzare = input("\nInserisci il nome del file json da creare (.json) : ")
+                file_da_analizzare = input("\nInserisci il nome del file json da creare : ")
+                if "." in file_da_analizzare:
+                    test = file_da_analizzare.split(".")
+                    if test[1] != "json":
+                        file_da_analizzare = file_da_analizzare + '.json'
+                    else:
+                        file_da_analizzare = file_da_analizzare
+                else:
+                    file_da_analizzare = file_da_analizzare + '.json'
+
                 o = open(file_da_analizzare, "a")
                 q = Queue()
                 x_t = 0
@@ -192,6 +219,7 @@ while scelta == 0:
                 for x in lista_thread:
                     x.join()
 
+
                 if len(lista_err) > 0:
                     workbook_err = xlsxwriter.Workbook("errore.xlsx")
                     worksheet_err = workbook_err.add_worksheet('Host non scansionati')
@@ -220,16 +248,34 @@ while scelta == 0:
     # ANALISI FILE
     elif valore_iniziale == '2':
         file_da_analizzare = raw_input("Inserisci il file da analizzare (.json): ")
+        if "." in file_da_analizzare:
+            test = file_da_analizzare.split(".")
+            if test[1] != "json":
+                file_da_analizzare = file_da_analizzare + '.json'
+            else:
+                file_da_analizzare = file_da_analizzare
+        else:
+            file_da_analizzare = file_da_analizzare + '.json'
         scelta = 1
 
+    elif valore_iniziale == '3':
+        print("\n Errore : Nome file con numero eccessivo di caratteri (<40) \n")
     # ERROR
     else:
         print("Valore inserito non valido \n I Valori ammessi sono 1 e 2 !! \n")
 
 # creazione file di excel
 
-controllo = (output + ".xlsx")
-workbook = xlsxwriter.Workbook(output + ".xlsx")
+if "." in output:
+    test = output.split(".")
+    if test[1] != "xlsx":
+        output = output + '.xlsx'
+    else:
+        output = output
+else:
+    output = output + '.xlsx'
+
+workbook = xlsxwriter.Workbook(output)
 worksheet = workbook.add_worksheet('Generale')
 worksheet.write('A1', 'IP')
 worksheet.write('B1', 'HOSTNAME')
@@ -265,7 +311,7 @@ worksheet3.write('F1', 'HOST')
 worksheet3.write('G1', 'IP')
 worksheet3.write('H1', 'Weak/Insecure')
 
-# host non scansionati
+
 
 with open(file_da_analizzare, 'r') as json_file:
     data = json.load(json_file)
@@ -475,3 +521,5 @@ with open(file_da_analizzare, 'r') as json_file:
         ip_analizzati = ip_analizzati + 1
 
 workbook.close()
+
+
